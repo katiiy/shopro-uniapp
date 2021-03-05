@@ -14,7 +14,7 @@
 				<view class="ranking-list x-bc" v-for="(item, index) in rankingsList" :key="index">
 					<view class="list-left x-f">
 						<view class="tag-box x-c">
-							<text class="tag-text" v-if="index >= 3">{{ index }}</text>
+							<text class="tag-text" v-if="index >= 3">{{ index+1 }}</text>
 							<image v-else class="tag-icon" :src="rankingsIcon[index]" mode=""></image>
 						</view>
 						<image class="user-avatar" :src="item.user.avatar" mode=""></image>
