@@ -407,6 +407,9 @@ export default {
 		await this.init();
 	},
 	onShow() {},
+	onHide(){
+		uni.$off('SELECT_ADDRESS')
+	},
 	methods: {
 		...mapActions(['getCartList']),
 		init() {

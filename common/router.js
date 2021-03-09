@@ -42,13 +42,8 @@ router.afterEach((to, from) => {
 	if (uni.getStorageSync('platform') === 'wxOfficialAccount' && uni.getSystemInfoSync().platform === 'ios' && !window.entryURL) {
 		/**
 		 * 微信h5,ios端sdk检验兼容。
-		 * 域名进入注意加'/'
 		 */
-		if (from.path === '/pages/index/index') {
-			window.entryURL = '/'
-		} else {
-			window.entryURL = from.path;
-		}
+		window.entryURL = window.location.href
 		wxsdk.initJssdk();
 	}
 	// #endif
