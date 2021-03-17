@@ -56,9 +56,9 @@
 </template>
 
 <script>
-	// #ifdef APP-PLUS
-	import permision from '@/common/permission.js';
-	// #endif
+// #ifdef APP-PLUS
+import permision from '@/common/permission.js';
+// #endif
 export default {
 	components: {},
 	data() {
@@ -144,16 +144,6 @@ export default {
 					console.log(err);
 				}
 			});
-			// #ifdef H5
-			this.$wxsdk.openAddress(res => {
-				this.chooseAddress = res.address;
-				this.addressData.latitude = res.latitude;
-				this.addressData.longitude = res.longitude;
-				if (this.addressData.id == 0) {
-					this.addressData.address = res.address;
-				}
-			});
-			// #endif
 		},
 		// app权限判断
 		async checkPermission() {

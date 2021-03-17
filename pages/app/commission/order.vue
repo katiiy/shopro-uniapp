@@ -64,46 +64,44 @@
 			</view>
 		</view>
 		<view class="content_box">
-			<!-- 订单列表 -->
-			<view class="order-list" v-for="item in orderList" :key="item.id">
-				<view class="order-head x-bc">
-					<text class="order-code">订单编号：{{ item.order_sn }}</text>
-					<text class="order-state">{{ item.status_name }}</text>
-				</view>
-				<view class="order-from x-bc">
-					<view class="from-user x-f">
-						<text>下单人：</text>
-						<image class="user-avatar" :src="item.buyer.avatar" mode=""></image>
-						<text class="user-name">{{ item.buyer.nickname }}</text>
+			<scroll-view scroll-y="true" @scrolltolower="loadMore" class="scroll-box">
+				<!-- 订单列表 -->
+				<view class="order-list" v-for="item in orderList" :key="item.id">
+					<view class="order-head x-bc">
+						<text class="order-code">订单编号：{{ item.order_sn }}</text>
+						<text class="order-state">{{ item.status_name }}</text>
 					</view>
-					<view class="order-time">{{ $u.timeFormat(item.createtime, ' yyyy.mm.dd hh:MM ') }}</view>
-				</view>
-				<view class="goods-card x-f" v-for="goods in item.item_slim" :key="goods.id">
-					<view class="goods-img-box"><image class="goods-img" :src="goods.goods_image" mode=""></image></view>
-					<view class="goods-info y-bc">
-						<view class="goods-title more-t">{{ goods.goods_title }}</view>
-						<view class="goods-sku">数量: {{ goods.goods_num }}；{{ goods.goods_sku_text || '' }}</view>
-						<view class="total-box x-bc">
-							<view class="goods-price">
-								{{ goods.goods_price }}
-								<text class="goods-state">{{ goods.agent_reward.status_name }}</text>
-							</view>
-							<view class="x-f">
-								<text class="name">佣金</text>
-								<text class="commission-num">{{ goods.agent_reward.commission }}</text>
+					<view class="order-from x-bc">
+						<view class="from-user x-f">
+							<text>下单人：</text>
+							<image class="user-avatar" :src="item.buyer.avatar" mode=""></image>
+							<text class="user-name">{{ item.buyer.nickname }}</text>
+						</view>
+						<view class="order-time">{{ $u.timeFormat(item.createtime, ' yyyy.mm.dd hh:MM ') }}</view>
+					</view>
+					<view class="goods-card x-f" v-for="goods in item.item_slim" :key="goods.id">
+						<view class="goods-img-box"><image class="goods-img" :src="goods.goods_image" mode=""></image></view>
+						<view class="goods-info y-bc">
+							<view class="goods-title more-t">{{ goods.goods_title }}</view>
+							<view class="goods-sku">数量: {{ goods.goods_num }}；{{ goods.goods_sku_text || '' }}</view>
+							<view class="total-box x-bc">
+								<view class="goods-price">
+									{{ goods.goods_price }}
+									<text class="goods-state">{{ goods.agent_reward.status_name }}</text>
+								</view>
+								<view class="x-f">
+									<text class="name">佣金</text>
+									<text class="commission-num">{{ goods.agent_reward.commission }}</text>
+								</view>
 							</view>
 						</view>
 					</view>
 				</view>
-				<!-- <view class="total-box x-bc px20">
-					<view class="num-price">共{{ item.item_slim.length }}件商品， 实付款:￥{{ item.pay_fee }}</view>
-					<view class="x-f"></view>
-				</view> -->
-			</view>
-			<!-- 缺省页 -->
-			<shopro-empty style="margin-top: 100rpx;" v-if="emptyData.show" :isFixed="false" :emptyData="emptyData"></shopro-empty>
-			<!-- 更多 -->
-			<u-loadmore v-if="orderList.length" height="80rpx" :status="loadStatus" icon-type="flower" color="#ccc" />
+				<!-- 缺省页 -->
+				<shopro-empty style="margin-top: 100rpx;" v-if="emptyData.show" :isFixed="false" :emptyData="emptyData"></shopro-empty>
+				<!-- 更多 -->
+				<u-loadmore v-if="orderList.length" height="80rpx" :status="loadStatus" icon-type="flower" color="#ccc" />
+			</scroll-view>
 		</view>
 	</view>
 </template>

@@ -56,7 +56,7 @@
 					<u-checkbox v-model="model.agreement" activeColor="#b095ff" shape="circle" @change="onAgreement"></u-checkbox>
 					<view class="agreement-text" @tap="Router.push({ path: '/pages/public/richtext', query: { id: protocol.richtext_id } })">
 						我已阅读并遵守
-						<text class="text-underline">{{ protocol.name }}</text>
+						<text class="text-underline">《{{ protocol.name }}》</text>
 					</view>
 				</view>
 				<button class="cu-btn save-btn" v-if="hasPostBtn" @tap="onSubmit" :disabled="isFormEnd">
