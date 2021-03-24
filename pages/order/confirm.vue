@@ -89,10 +89,12 @@
 				提交订单
 			</button>
 		</view>
-		<!-- pricker -->
+		
+		<!-- 优惠券选择 -->
 		<sh-picker-modal v-if="pickerData.couponList" @changeCoupon="changeCoupon" v-model="showPicker" :pickerData="pickerData"></sh-picker-modal>
 		<!-- 登录提示 -->
 		<shopro-login-modal></shopro-login-modal>
+		
 		<!-- 配送方式弹窗 -->
 		<shopro-modal v-model="showExpressType" :modalType="'bottom-modal'">
 			<block slot="modalContent">
